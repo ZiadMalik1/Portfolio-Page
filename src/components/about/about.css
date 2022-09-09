@@ -18,16 +18,35 @@
 
 .about__box {
   background-color: var(--container-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.75rem;
   text-align: center;
   padding: 1rem 1.25rem;
+  cursor: pointer;
+}
+
+.about__box:hover {
+  box-shadow: 0 0 5px rgba(33, 33, 33, 0.2);
 }
 
 .about__icon {
   font-size: 1.5rem;
   color: var(--title-color);
   margin-bottom: var(--mb-0-5);
+}
+
+.about__arrow {
+  display: inline-block;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.about__button:hover .about__arrow {
+  transform: translateY(0.1rem);
 }
 
 .about__title {
@@ -42,6 +61,19 @@
 .about__description {
   padding: 0 4rem 0 0;
   margin-bottom: var(--mb-2-5);
+}
+
+.about__button {
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  cursor: pointer;
+}
+
+.about__button-icon {
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 992px) {
@@ -80,11 +112,90 @@
   .about__description {
     padding: 0;
   }
-  
+
+  .modal__list {
+    text-align: left;
+  }
 }
 
 @media screen and (max-width: 350px) {
   .about__info {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+details[open] summary ~ * {
+  animation: open 0.3s ease-in-out;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 300;
+  list-style: none;
+}
+
+details summary:after {
+  color: black;
+  position: absolute;
+  font-size: 1.75rem;
+  line-height: 0;
+  margin-top: 0.75rem;
+  right: 0;
+  font-weight: 200;
+  transform-origin: center;
+  transition: 200ms linear;
+}
+
+details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 2rem;
+}
+
+details .summary__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+details summary {
+  outline: 0;
+}
+
+details .services__modal-info {
+  font-size: 0.75rem;
+}
+
+details .hidden__details {
+  margin: 0 0 1rem;
+  padding-top: 1rem;
+  font-size: 0.75rem;
+}
+
+details ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  margin: 0 0 1rem;
+  padding-top: 1rem;
+  font-size: 0.75rem;
 }
